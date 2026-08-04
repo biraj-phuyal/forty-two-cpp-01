@@ -1,5 +1,5 @@
 NAME	= zombie
-SRC		= Zombie.cpp main.cpp Zombie-helper.cpp
+SRC		= Zombie.cpp main.cpp newZombie.cpp randomChump.cpp
 OBJ_DIR	= obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 CC		= c++

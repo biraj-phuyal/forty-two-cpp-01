@@ -12,7 +12,6 @@ class HumanA{
         HumanA(std::string name, Weapon &bukki);
         ~HumanA(void);
         void attack(void);
-
 };
 
 #endif

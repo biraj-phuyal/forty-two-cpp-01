@@ -1,5 +1,5 @@
 NAME	= replace
-SRC		= replace.cpp main.cpp
+SRC		= main.cpp
 OBJ_DIR	= obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 CC		= c++

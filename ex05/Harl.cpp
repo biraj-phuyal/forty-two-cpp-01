@@ -17,5 +17,13 @@ void Harl::error() {
 }
 
 void Harl::complain(std::string level) {
-    level == "INFO" ? this->info() : level == "DEBUG" ? this->debug() : level == "ERROR" ? this->error() : level == "WARNING" ? this->warning() : void();
+    const std::string command[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl::*methods[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+    for (int i = 0; i < 4; i++) {
+        if (level == command[i]) {
+            (this->*methods[i])();
+            return;
+        }
+    }
 }

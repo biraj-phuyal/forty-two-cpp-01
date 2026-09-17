@@ -2,6 +2,7 @@
 #define WEAPON_HPP
 
 #include <iostream>
+#include <string>
 
 class Weapon {
     private:
@@ -10,7 +11,7 @@ class Weapon {
         Weapon(void);
         Weapon(std::string type);
         ~Weapon(void);
-        std::string getType();
+        const std::string &getType() const;
         void setType(std::string type);
 };
 

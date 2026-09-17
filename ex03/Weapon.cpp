@@ -16,7 +16,7 @@ Weapon::~Weapon () {
     std::cout << this->type << " was deleted" << std::endl;
 }
 
-std::string Weapon::getType() {
+const std::string &Weapon::getType() const {
     return this->type;
 }
 

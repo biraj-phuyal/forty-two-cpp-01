@@ -43,8 +43,16 @@ int main(int args, char **argv) {
         std::cout << "Could not open file" << std::endl;
         return 1;
     }
-    while (input.get(c))
+    while (true) {
+        errno = 0;
+        if (!input.get(c))
+            break;
         content += c;
+    }
+    if (input.bad() || !input.eof() || errno != 0) {
+        std::cout << "Could not read file" << std::endl;
+        return 1;
+    }
     input.close();
 
     // Above is input. Below is output.
@@ -56,6 +64,10 @@ int main(int args, char **argv) {
     }
     output << replace_all(string1, string2, content);
     output.close();
+    if (!output) {
+        std::cout << "Could not write replace file" << std::endl;
+        return 1;
+    }
 
     return 0;
 }

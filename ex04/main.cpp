@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <string>
+#include <sstream>
+#include <cerrno>
 
 std::string replace_all(std::string &s1, std::string &s2, std::string &content) {
     std::string result;
@@ -20,7 +21,6 @@ std::string replace_all(std::string &s1, std::string &s2, std::string &content) 
         start = found + s1.length();
         found = content.find(s1, start);
     }
-
     result.append(content, start, content.length() - start);
     return result;
 }
@@ -28,7 +28,7 @@ std::string replace_all(std::string &s1, std::string &s2, std::string &content) 
 
 int main(int args, char **argv) {
     if (args != 4) {
-        std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
+        std::cout << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
         return 1;
     }
 
@@ -39,17 +39,23 @@ int main(int args, char **argv) {
     char c;
 
     std::ifstream input(filename.c_str());
-    if (!input)
-    {
-        std::cerr << "Could not open file" << std::endl;
+    if (!input) {
+        std::cout << "Could not open file" << std::endl;
         return 1;
     }
-    while(input.get(c))
+    while (input.get(c))
         content += c;
-    
     input.close();
+
+    // Above is input. Below is output.
+
     std::ofstream output((filename + ".replace").c_str());
-    
+    if (!output) {
+        std::cout << "Could not create replace file" << std::endl;
+        return 1;
+    }
     output << replace_all(string1, string2, content);
+    output.close();
+
     return 0;
 }

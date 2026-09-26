@@ -1,7 +1,7 @@
 #include "Weapon.hpp"
 
 Weapon::Weapon() {
-    this->type = "cub";
+    this->type = "default";
 
     std::cout << this->type << " was created" << std::endl;
 }

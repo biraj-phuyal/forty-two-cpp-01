@@ -18,8 +18,11 @@ clean:
 	rm -fr $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) test.txt.replace
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: $(NAME)
+	./$(NAME) test.txt "evaluation" "hackathon"
+
+.PHONY: all clean fclean re run
